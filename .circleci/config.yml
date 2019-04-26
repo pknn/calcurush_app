@@ -64,7 +64,7 @@ jobs:
           at: .
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies-{{ checksum "yarn.lock" }}
             - v1-dependencies
       - run:
           name: 'Run e2e tests'
