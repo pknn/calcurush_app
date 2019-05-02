@@ -5,7 +5,7 @@
       <div class="content p-4">
         <font-awesome-icons
           :icon="['fas', 'cog']"
-          size="4x"
+          size="3x"
           spin
         ></font-awesome-icons>
         <span class="m-4 text-xl font-medium">Initializing</span>
