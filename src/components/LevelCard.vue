@@ -11,7 +11,7 @@
   &:active
     @apply shadow-none bg-grey
   .level-label
-    @apply text-lg font-medium p-6
+    @apply text-lg font-semibold px-6 py-8 capitalize
 </style>
 
 <script>

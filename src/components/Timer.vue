@@ -113,11 +113,11 @@ export default {
     },
     add(time) {
       const newTime = this.distance + time * 1000
-      if (newTime <= this.time) this.distance = newTime
+      this.distance = newTime >= this.time ? this.time * 1000 : newTime
     },
     deduct(time) {
       const newTime = this.distance - time * 1000
-      if (newTime >= 0) this.distance = newTime
+      this.distance = newTime <= 0 ? 0 : newTime
     }
   }
 }

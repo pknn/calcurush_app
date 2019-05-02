@@ -40,6 +40,7 @@
       <div class="body">
         <question
           ref="question"
+          :level="level"
           @onCorrect="correct"
           @onIncorrect="incorrect"
         />
@@ -92,6 +93,13 @@ export default {
       state: 'init'
     }
   },
+  computed: {
+    level() {
+      return this.$route.params.level === 'hard'
+        ? 99
+        : parseInt(this.$route.params.level)
+    }
+  },
   mounted() {},
   methods: {
     gameStart() {
@@ -112,7 +120,7 @@ export default {
     correct() {
       this.score++
       this.$refs.question.init()
-      this.$refs.timer.add(2)
+      this.$refs.timer.add(10)
     },
     incorrect() {
       this.$refs.question.init()

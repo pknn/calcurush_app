@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="question">
-      <h1 class="text-5xl">{{ level }} x {{ multiplier }}</h1>
+      <h1 class="text-5xl">{{ lv }} x {{ multiplier }}</h1>
     </div>
     <div class="choices">
       <div
@@ -48,6 +48,7 @@ export default {
   },
   data() {
     return {
+      lv: 0,
       multiplier: 0,
       answers: []
     }
@@ -63,9 +64,10 @@ export default {
     init() {
       this.answers = []
       const random = (min, max) => Math.floor(Math.random() * (max - min) + min)
+      this.lv = this.level === 99 ? random(2, 12) : this.level
       this.multiplier = random(this.min, this.max)
-      const answer = this.level * this.multiplier
-      const min = answer - 10 >= this.level ? answer - 10 : this.level
+      const answer = this.lv * this.multiplier
+      const min = answer - 10 >= this.lv ? answer - 10 : this.lv
       const max = answer + 10
       const a = [min, answer]
       for (let i = 0; i < 4; i++) {
