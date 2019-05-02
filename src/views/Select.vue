@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import LevelCard from '@/components/LevelCard'
 
 export default {
@@ -33,6 +34,12 @@ export default {
     return {
       levels: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 'hard']
     }
+  },
+  mounted() {
+    this.getHighscores()
+  },
+  methods: {
+    ...mapActions('highscore', ['getHighscores'])
   }
 }
 </script>

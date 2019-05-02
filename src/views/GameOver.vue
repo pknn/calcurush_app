@@ -55,10 +55,11 @@ export default {
           score: this.game.score
         }
       })
+      this.getHighscores()
     }
   },
   methods: {
-    ...mapActions('highscore', ['setHighScore'])
+    ...mapActions('highscore', ['setHighScore', 'getHighscores'])
   }
 }
 </script>

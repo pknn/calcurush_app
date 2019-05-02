@@ -5,6 +5,7 @@ import Home from '@/views/Home'
 import Select from '@/views/Select'
 import Level from '@/views/Level'
 import GameOver from '@/views/GameOver'
+import Leaderboard from '@/views/Leaderboard'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ const router = new Router({
       path: '/gameover',
       name: 'gameover',
       component: GameOver
+    },
+    {
+      path: '/leaderboard',
+      name: 'leaderboard',
+      component: Leaderboard
     },
     {
       path: '*',

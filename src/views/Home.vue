@@ -40,7 +40,7 @@
       <router-link class="btn btn-primary" :to="{ name: 'select' }">
         <font-awesome-icons :icon="['fas', 'play']"></font-awesome-icons>
       </router-link>
-      <router-link class="btn btn-secondary" :to="{ name: 'select' }">
+      <router-link class="btn btn-secondary" :to="{ name: 'leaderboard' }">
         <font-awesome-icons :icon="['fas', 'trophy']"></font-awesome-icons>
       </router-link>
       <a class="btn btn-secondary" @click="modal = true">

@@ -12,9 +12,9 @@ export default {
     const { level } = payload
 
     commit('setLevelHighScore', payload)
-    const highScore = rootState.highscore.levels[level]
-    if (!rootState.highscore.levels[level].id)
-      await highScoreDb.create(highScore)
-    else await highScoreDb.update(highScore)
+    const highscore = rootState.highscore.levels.find(h => h.level == level)
+    if (!highscore.id) {
+      await highScoreDb.create(highscore)
+    } else await highScoreDb.update(highscore)
   }
 }
