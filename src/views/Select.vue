@@ -45,15 +45,18 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import '@/theme/variables.sass'
 .page-wrapper
   @apply flex flex-col justify-center items-center
   .head-content
+    @apply fixed pin-t m-auto py-3 h-10 w-full
+    background: $white
     .back-button
       @apply absolute pin-l ml-3
     .header
     @apply text-lg font-bold text-center uppercase
   .body
-    @apply my-4
+    @apply my-6
     .level-cards
-      @apply flex flex-wrap
+      @apply flex flex-wrap justify-around
 </style>

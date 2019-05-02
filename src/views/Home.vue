@@ -162,7 +162,7 @@ export default {
   .content-wrapper
     @apply flex flex-col justify-center items-center
     .logo
-      @apply mb-8
+      @apply mb-6
     .user-info
-      @apply absolute pin-b mb-4
+      @apply absolute pin-b mb-4 text-xs
 </style>

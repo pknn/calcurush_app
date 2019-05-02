@@ -17,6 +17,7 @@
 </template>
 
 <style lang="sass" scoped>
+@import '@/theme/variables.sass'
 .container
   @apply flex flex-col h-full
   height: calc(100vh - 97px)
@@ -26,8 +27,9 @@
 .choices
   @apply flex flex-1 flex-col justify-center items-center
   .choice
-    @apply bg-green w-full text-center flex-1 m-2
+    @apply w-full text-center flex-1 m-2 rounded-lg shadow-md
     @apply flex justify-center items-center
+    background: $grey
 </style>
 
 <script>
@@ -50,6 +52,7 @@ export default {
     return {
       lv: 0,
       multiplier: 0,
+      multipliers: [],
       answers: []
     }
   },
@@ -61,11 +64,20 @@ export default {
       if (answer.isCorrect) this.$emit('onCorrect')
       else this.$emit('onIncorrect')
     },
+    generate() {
+      for (let i = 0; i < 10; i++) {
+        this.multipliers.push(
+          Math.floor(Math.random() * (this.max - this.min) + this.min)
+        )
+      }
+      this.multipliers.reverse()
+    },
     init() {
       this.answers = []
       const random = (min, max) => Math.floor(Math.random() * (max - min) + min)
       this.lv = this.level === 99 ? random(2, 12) : this.level
-      this.multiplier = random(this.min, this.max)
+      if (this.multipliers.length <= 5) this.generate()
+      this.multiplier = this.multipliers.pop()
       const answer = this.lv * this.multiplier
       const min = answer - 10 >= this.lv ? answer - 10 : this.lv
       const max = answer + 10
