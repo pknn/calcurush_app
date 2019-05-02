@@ -5,19 +5,21 @@
     </div>
     <div class="body">
       <div class="level-wrapper">
-        <span class="level">Level {{ level }}</span>
+        <span class="level"
+          >Level {{ game.level == 99 ? 'Hard' : game.level }}</span
+        >
       </div>
       <div class="highscore-wrapper">
         New Highscore
       </div>
       <div class="score-wrapper">
         <div class="text-score">Score</div>
-        <div class="score">{{ score }}</div>
+        <div class="score">{{ game.score }}</div>
       </div>
       <div class="control-wrapper">
         <router-link
           class="btn btn-primary"
-          :to="{ name: 'level', params: { level: level } }"
+          :to="{ name: 'level', params: { level: game.level } }"
         >
           <font-awesome-icons :icon="['fas', 'redo']"></font-awesome-icons>
         </router-link>
@@ -33,12 +35,30 @@
 </template>
 
 <script>
+import { mapGetters, mapState, mapActions } from 'vuex'
+
 export default {
-  data() {
-    return {
-      level: 2,
-      score: 40
+  computed: {
+    ...mapGetters('highscore', ['isNewHighScore']),
+    ...mapState('highscore', ['game']),
+    ...mapState('authentication', ['user']),
+    isHighScore() {
+      return this.isNewHighScore(this.game)
     }
+  },
+  mounted() {
+    if (this.isNewHighScore) {
+      this.setHighScore({
+        level: this.game.level == 99 ? 'hard' : this.game.level,
+        info: {
+          user: this.user.displayName || this.user.id,
+          score: this.game.score
+        }
+      })
+    }
+  },
+  methods: {
+    ...mapActions('highscore', ['setHighScore'])
   }
 }
 </script>

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import authentication from './authentication'
 import app from './app'
-import highScore from './highscore'
+import highscore from './highscore'
 
 Vue.use(Vuex)
 
@@ -13,6 +13,6 @@ export default new Vuex.Store({
   modules: {
     authentication,
     app,
-    highScore
+    highscore
   }
 })

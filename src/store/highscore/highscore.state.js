@@ -12,5 +12,6 @@ export default {
     11: null,
     12: null,
     hard: null
-  }
+  },
+  game: null
 }

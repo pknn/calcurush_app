@@ -53,6 +53,7 @@
 import CountdownTimer from '@/components/CountdownTimer'
 import Timer from '@/components/Timer'
 import Question from '@/components/Question'
+import { mapMutations } from 'vuex'
 
 export default {
   components: { CountdownTimer, Timer, Question },
@@ -71,6 +72,7 @@ export default {
   },
   mounted() {},
   methods: {
+    ...mapMutations('highscore', ['setGame']),
     gameStart() {
       this.state = 'running'
       this.$refs.timer.start()
@@ -96,6 +98,7 @@ export default {
       this.$refs.timer.deduct(3)
     },
     gameOver() {
+      this.setGame({ level: this.level, score: this.score })
       this.$router.push({ name: 'gameover' })
     }
   }

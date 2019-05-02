@@ -1,7 +1,11 @@
 export default {
-  setLevelHighScore: (state, level, payload) => {
-    state.levels[level].user = payload.user
-    state.levels[level].score = payload.score
+  setLevelHighScore: (state, payload) => {
+    const { level, info } = payload
+    console.log(payload)
+    if (!state.levels[level]) state.levels[level] = {}
+    state.levels[level].user = info.user
+    state.levels[level].score = info.score
   },
-  setHighScores: (state, payloads) => (state.levels = payloads)
+  setHighScores: (state, payloads) => (state.levels = payloads),
+  setGame: (state, payload) => (state.game = payload)
 }

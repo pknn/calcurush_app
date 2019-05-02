@@ -10,6 +10,7 @@ service cloud.firestore {
 
     match /highscores/{levelId} {
       allow get: if authenticated();
+      allow read: if authenticated();
       allow create: if authenticated();
       allow update, delete: if authenticated();
     }

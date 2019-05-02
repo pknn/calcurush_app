@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 import firebase from 'firebase/app'
 
 export default {
@@ -87,6 +87,16 @@ export default {
         : ''
     }
   },
+  watch: {
+    user: {
+      handler(user) {
+        if (user) {
+          this.getHighscores()
+        }
+      },
+      immediate: true
+    }
+  },
   mounted() {
     if (!this.user) {
       this.init = true
@@ -95,6 +105,7 @@ export default {
   },
   methods: {
     ...mapMutations('authentication', ['setUser']),
+    ...mapActions('highscore', ['getHighscores']),
     async loginWithGoogle() {
       this.loginError = null
       const provider = new firebase.auth.GoogleAuthProvider()
@@ -121,6 +132,7 @@ export default {
     async logout() {
       await firebase.auth().signOut()
       this.$router.replace('/home')
+      this.loginAnonymous()
     }
   }
 }
