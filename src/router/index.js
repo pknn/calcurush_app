@@ -38,7 +38,7 @@ const router = new Router({
       }
     },
     {
-      path: '/level/:level',
+      path: '/level-:level',
       name: 'level',
       component: Level,
       meta: {
