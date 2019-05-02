@@ -145,11 +145,11 @@ export default {
   .overlay
     @apply absolute pin h-full w-full bg-black opacity-75 z-40
   .login-modal
-    height: 20vh
+    height: 30vh
     width: 80vw
     @apply z-50 absolute pin bg-white m-auto py-4 px-2 text-center rounded-lg shadow-lg
     .content
-      @apply flex flex-col justify-center items-center
+      @apply flex flex-col justify-center items-center h-full
   .setting-modal
     height: 20vh
     width: 80vw

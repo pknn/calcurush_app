@@ -23,7 +23,7 @@
   height: calc(100vh - 97px)
 .question
   @apply flex items-center justify-center
-  @apply py-32
+  @apply py-24
 .choices
   @apply flex flex-1 flex-col justify-center items-center
   .choice
