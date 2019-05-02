@@ -3,13 +3,13 @@
     <span
       v-if="showSec"
       class="second text-3xl font-medium"
-      :class="sec <= 0 ? timeUpClass : sec <= 5 ? timeFewClass : ''"
+      :class="sec < 5 ? timeUpClass : sec < 10 ? timeFewClass : ''"
       >{{ sec }}</span
     >
     <span
       v-if="showMillis"
       class="millis text-md"
-      :class="sec <= 0 ? timeUpClass : sec <= 5 ? timeFewClass : ''"
+      :class="sec < 5 ? timeUpClass : sec < 10 ? timeFewClass : ''"
     >
       {{ millis }}</span
     >
@@ -18,6 +18,7 @@
 </template>
 
 <style lang="sass">
+@import '@/theme/variables.sass'
 .main-timer
   @apply p-2
 .bottom-line
@@ -28,7 +29,7 @@
   right: 0
   height: 10%
   bottom: 0
-  background: purple
+  background: $primary
   -webkit-transition: width 1s linear
   @apply rounded
 </style>
