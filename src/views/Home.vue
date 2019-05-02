@@ -41,6 +41,7 @@ export default {
 
 <style lang="sass" scoped>
 .page-wrapper
+  height: calc(100vh - 40px)
   @apply flex flex-col justify-center items-center
   .logo
     @apply mb-8
