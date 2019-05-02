@@ -1,14 +1,33 @@
 <template>
   <div class="page-wrapper">
-    <div class="countdown-timer"></div>
-    <div class="pause-screen"></div>
-    <div class="overlay"></div>
+    <div v-show="state === 'init'" class="countdown-timer">
+      <countdown-timer @onStop="gameStart" />
+    </div>
+    <div v-show="state === 'pausing'" class="pause-screen">
+      <div class="content">
+        <span class="heading">Paused</span>
+        <a class="btn btn-primary" @click="togglePause">
+          <font-awesome-icons :icon="['fas', 'play']"></font-awesome-icons>
+        </a>
+        <router-link class="btn btn-secondary" :to="{ name: 'select' }">
+          <font-awesome-icons :icon="['fas', 'th-large']"></font-awesome-icons>
+        </router-link>
+        <router-link class="btn btn-secondary" :to="{ name: 'home' }">
+          <font-awesome-icons :icon="['fas', 'home']"></font-awesome-icons>
+        </router-link>
+      </div>
+    </div>
+    <div
+      v-show="state === 'stopped' || state === 'pausing' || state === 'init'"
+      class="overlay"
+      @click="togglePause"
+    ></div>
     <div class="gameplay">
       <div class="head-content">
-        <div class="side pause-button">
+        <div class="side pause-button" @click="togglePause">
           <font-awesome-icons :icon="['fas', 'pause']"></font-awesome-icons>
         </div>
-        <div class="timer flex-1"><timer ref="timer" /></div>
+        <div class="timer flex-1"><timer ref="timer" @onStop="gameOver" /></div>
         <div class="side score">
           <div class="header">
             <span>Score</span>
@@ -32,6 +51,17 @@
 <style lang="sass" scoped>
 .page-wrapper
   @apply flex flex-col justify-center items-center
+  .countdown-timer
+    @apply absolute pin z-50
+  .pause-screen
+    height: 40vh
+    width: 80vw
+    @apply z-50 absolute pin bg-white m-auto py-4 px-2 text-center rounded-lg
+    .content
+      @apply h-full w-full relative
+      @apply flex flex-col
+      .heading
+        @apply mt-4 mb-6 text-lg font-bold uppercase
   .overlay
     @apply absolute pin h-full w-full bg-black opacity-75 z-40
   .gameplay
@@ -50,20 +80,33 @@
 </style>
 
 <script>
+import CountdownTimer from '@/components/CountdownTimer'
 import Timer from '@/components/Timer'
 import Question from '@/components/Question'
 
 export default {
-  components: { Timer, Question },
+  components: { CountdownTimer, Timer, Question },
   data() {
     return {
       score: 0,
-      state: 'stopped'
+      state: 'init'
     }
   },
   mounted() {},
   methods: {
-    togglePause() {},
+    gameStart() {
+      this.state = 'running'
+      this.$refs.timer.start()
+    },
+    togglePause() {
+      if (this.state == 'pausing') {
+        this.state = 'running'
+        this.$refs.timer.resume()
+      } else {
+        this.state = 'pausing'
+        this.$refs.timer.pause()
+      }
+    },
     levelSelect() {},
     mainMenu() {},
     correct() {
@@ -74,6 +117,9 @@ export default {
     incorrect() {
       this.$refs.question.init()
       this.$refs.timer.deduct(3)
+    },
+    gameOver() {
+      this.$router.push('/')
     }
   }
 }

@@ -112,12 +112,12 @@ export default {
       this.start()
     },
     add(time) {
-      if (this.distance <= this.time * 1000)
-        this.distance += parseInt(time) * 1000
+      const newTime = this.distance + time * 1000
+      if (newTime <= this.time) this.distance = newTime
     },
     deduct(time) {
-      if (this.distance >= parseInt(time * 1000))
-        this.distance -= parseInt(time) * 1000
+      const newTime = this.distance - time * 1000
+      if (newTime >= 0) this.distance = newTime
     }
   }
 }
