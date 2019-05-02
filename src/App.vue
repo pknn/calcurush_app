@@ -32,6 +32,8 @@ export default {
 </script>
 
 <style lang="sass">
+@import '@/theme/variables.sass'
+@import '@/theme/main.sass'
 body
   margin: 0
   -webkit-user-select: none

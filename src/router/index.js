@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Head from 'vue-head'
 import Home from '@/views/Home'
+import Select from '@/views/Select'
 import { isNil } from 'lodash'
 import store from '@/store'
 
@@ -23,6 +24,14 @@ const router = new Router({
       path: '/home',
       name: 'home',
       component: Home,
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
+      path: '/select',
+      name: 'select',
+      component: Select,
       meta: {
         authNotRequired: true
       }
