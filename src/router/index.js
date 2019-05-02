@@ -11,7 +11,7 @@ Vue.use(Router)
 /* If you don't know about VueHead, please refer to https://github.com/ktquez/vue-head */
 
 Vue.use(Head, {
-  complement: 'bento-starter'
+  complement: 'Calcurush'
 })
 
 /* If you don't know about VueRouter, please refer to https://router.vuejs.org/ */
@@ -41,7 +41,8 @@ const router = new Router({
       name: 'login',
       component: () =>
         import(
-          /* webpackChunkName: "client-chunk-login" */ '@/views/Login.vue'
+          /* webpackChunkName: "client-chunk-login" */
+          '@/views/Login.vue'
         ),
       meta: {
         authNotRequired: true
@@ -52,10 +53,14 @@ const router = new Router({
       name: 'products',
       component: () =>
         import(
-          /* webpackChunkName: "client-chunk-products" */ '@/views/Products.vue'
+          /* webpackChunkName: "client-chunk-products" */
+          '@/views/Products.vue'
         )
     },
-    { path: '*', redirect: '/home' }
+    {
+      path: '*',
+      redirect: '/home'
+    }
   ]
 })
 

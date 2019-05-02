@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <nav-bar></nav-bar>
     <div class="main-wrapper">
       <router-view />
     </div>
@@ -18,13 +17,12 @@
   </div>
 </template>
 <script>
-import NavBar from '@/components/NavBar'
 import NewContentAvailableToastr from '@/components/NewContentAvailableToastr'
 import AppleAddToHomeScreenModal from '@/components/AppleAddToHomeScreenModal'
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  components: { NavBar, NewContentAvailableToastr, AppleAddToHomeScreenModal },
+  components: { NewContentAvailableToastr, AppleAddToHomeScreenModal },
   computed: mapState('app', [
     'newContentAvailable',
     'showAddToHomeScreenModalForApple'
@@ -36,6 +34,9 @@ export default {
 <style lang="scss">
 body {
   margin: 0;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 
   a {
     font-weight: 500;
@@ -69,13 +70,12 @@ body {
     }
 
     .main-wrapper {
-      margin-top: 3.6rem;
       padding: 20px;
-
+      width: 100vw;
+      height: 100vh;
       .page-wrapper {
         width: 60%;
         margin: auto;
-
         @media screen and (max-width: 1000px) {
           width: 100%;
         }
