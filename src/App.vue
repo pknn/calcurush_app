@@ -37,6 +37,8 @@ body {
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
+  width: 100%;
+  height: 100%;
 
   a {
     font-weight: 500;
@@ -71,8 +73,6 @@ body {
 
     .main-wrapper {
       padding: 20px;
-      width: 100vw;
-      height: 100vh;
       .page-wrapper {
         width: 60%;
         margin: auto;
