@@ -15,17 +15,14 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.wrapper {
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  display: inline-block;
-  border-radius: 4px;
-
-  .refresh-btn {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-}
+<style lang="sass" scoped>
+.wrapper
+  padding: 10px 20px
+  background-color: #333
+  color: white
+  display: inline-block
+  border-radius: 4px
+  .refresh-btn
+    text-decoration: underline
+    cursor: pointer
 </style>
