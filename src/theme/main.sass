@@ -1,0 +1,27 @@
+.btn
+  @apply px-8 py-3
+  @apply m-3
+  @apply text-white
+  @apply rounded
+  @apply shadow-lg
+    
+  &:hover, &:active
+    @apply shadow-md
+  &.btn-text
+    @apply p-2 m-2
+    @apply shadow-none
+    @apply text-grey-darkest
+  &.btn-primary
+    @apply bg-blue
+    &:hover, &:active
+      @apply bg-blue-dark
+  &.btn-secondary
+    @apply bg-grey-dark
+    &:hover, &:active
+      @apply bg-grey-darker
+  &.btn-google
+    @apply bg-red text-white
+    &[disabled]
+      background: lighten(#e3342f, 20)
+  &.btn-google-outline
+    @apply bg-white border-red text-red
