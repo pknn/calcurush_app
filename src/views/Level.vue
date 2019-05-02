@@ -49,37 +49,6 @@
   </div>
 </template>
 
-<style lang="sass" scoped>
-.page-wrapper
-  @apply flex flex-col justify-center items-center
-  .countdown-timer
-    @apply absolute pin z-50
-  .pause-screen
-    height: 40vh
-    width: 80vw
-    @apply z-50 absolute pin bg-white m-auto py-4 px-2 text-center rounded-lg
-    .content
-      @apply h-full w-full relative
-      @apply flex flex-col
-      .heading
-        @apply mt-4 mb-6 text-lg font-bold uppercase
-  .overlay
-    @apply absolute pin h-full w-full bg-black opacity-75 z-40
-  .gameplay
-    @apply w-full h-full
-    .head-content
-      @apply flex w-full items-center justify-center
-      .side
-        @apply m-3 w-8
-      .timer
-        @apply flex-1
-      .score
-        .header
-          @apply text-xs
-        .body
-          @apply text-lg text-center font-bold
-</style>
-
 <script>
 import CountdownTimer from '@/components/CountdownTimer'
 import Timer from '@/components/Timer'
@@ -120,15 +89,46 @@ export default {
     correct() {
       this.score++
       this.$refs.question.init()
-      this.$refs.timer.add(10)
+      this.$refs.timer.add(2)
     },
     incorrect() {
       this.$refs.question.init()
       this.$refs.timer.deduct(3)
     },
     gameOver() {
-      this.$router.push('/')
+      this.$router.push({ name: 'gameover' })
     }
   }
 }
 </script>
+
+<style lang="sass" scoped>
+.page-wrapper
+  @apply flex flex-col justify-center items-center
+  .countdown-timer
+    @apply absolute pin z-50
+  .pause-screen
+    height: 40vh
+    width: 80vw
+    @apply z-50 absolute pin bg-white m-auto py-4 px-2 text-center rounded-lg
+    .content
+      @apply h-full w-full relative
+      @apply flex flex-col
+      .heading
+        @apply mt-4 mb-6 text-lg font-bold uppercase
+  .overlay
+    @apply absolute pin h-full w-full bg-black opacity-75 z-40
+  .gameplay
+    @apply w-full h-full
+    .head-content
+      @apply flex w-full items-center justify-center
+      .side
+        @apply m-3 w-8
+      .timer
+        @apply flex-1
+      .score
+        .header
+          @apply text-xs
+        .body
+          @apply text-lg text-center font-bold
+</style>

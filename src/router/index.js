@@ -4,6 +4,7 @@ import Head from 'vue-head'
 import Home from '@/views/Home'
 import Select from '@/views/Select'
 import Level from '@/views/Level'
+import GameOver from '@/views/GameOver'
 import { isNil } from 'lodash'
 import store from '@/store'
 
@@ -41,6 +42,14 @@ const router = new Router({
       path: '/level-:level',
       name: 'level',
       component: Level,
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
+      path: '/gameover',
+      name: 'gameover',
+      component: GameOver,
       meta: {
         authNotRequired: true
       }
