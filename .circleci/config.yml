@@ -128,4 +128,4 @@ workflows:
             - run-e2e-tests
       - deploy:
           requires:
-            - check-bundles-sizes
+            - build
