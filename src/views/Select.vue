@@ -2,7 +2,7 @@
   <div class="page-wrapper">
     <div class="head-content">
       <div class="back-button">
-        <a class="btn btn-text" @click.prevent="$router.go(-1)">
+        <a class="btn btn-text" @click.prevent="$router.push({ name: 'home' })">
           <font-awesome-icons
             :icon="['fas', 'chevron-left']"
           ></font-awesome-icons>
