@@ -5,8 +5,6 @@ import Home from '@/views/Home'
 import Select from '@/views/Select'
 import Level from '@/views/Level'
 import GameOver from '@/views/GameOver'
-import { isNil } from 'lodash'
-import store from '@/store'
 
 Vue.use(Router)
 
@@ -25,55 +23,28 @@ const router = new Router({
     {
       path: '/home',
       name: 'home',
-      component: Home,
-      meta: {
-        authNotRequired: true
-      }
+      component: Home
     },
     {
       path: '/select',
       name: 'select',
-      component: Select,
-      meta: {
-        authNotRequired: true
-      }
+      component: Select
     },
     {
       path: '/level-:level',
       name: 'level',
-      component: Level,
-      meta: {
-        authNotRequired: true
-      }
+      component: Level
     },
     {
       path: '/gameover',
       name: 'gameover',
-      component: GameOver,
-      meta: {
-        authNotRequired: true
-      }
+      component: GameOver
     },
     {
       path: '*',
       redirect: '/home'
     }
   ]
-})
-
-/**
- * Handle user redirections
- */
-router.beforeEach((to, from, next) => {
-  if (
-    !(to.meta && to.meta.authNotRequired) &&
-    isNil(store.state.authentication.user)
-  ) {
-    const path =
-      store.state.authentication.user === null ? '/login' : '/check-login'
-    return next(`${path}?redirectUrl=${to.path}`)
-  }
-  next()
 })
 
 export default router
