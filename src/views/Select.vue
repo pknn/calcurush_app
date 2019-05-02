@@ -49,7 +49,7 @@ export default {
 .page-wrapper
   @apply flex flex-col justify-center items-center
   .head-content
-    @apply fixed pin-t m-auto py-3 h-10 w-full
+    @apply fixed pin-t m-auto py-3 h-8 w-full
     background: $white
     .back-button
       @apply absolute pin-l ml-3

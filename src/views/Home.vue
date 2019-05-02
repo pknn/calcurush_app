@@ -132,7 +132,6 @@ export default {
     async logout() {
       await firebase.auth().signOut()
       this.$router.replace('/home')
-      this.loginAnonymous()
     }
   }
 }
