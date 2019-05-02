@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Head from 'vue-head'
 import Home from '@/views/Home'
 import Select from '@/views/Select'
+import Level from '@/views/Level'
 import { isNil } from 'lodash'
 import store from '@/store'
 
@@ -32,6 +33,14 @@ const router = new Router({
       path: '/select',
       name: 'select',
       component: Select,
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
+      path: '/level/:level',
+      name: 'level',
+      component: Level,
       meta: {
         authNotRequired: true
       }
