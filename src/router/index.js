@@ -5,6 +5,9 @@ import Home from '@/views/Home'
 import Select from '@/views/Select'
 import Level from '@/views/Level'
 import GameOver from '@/views/GameOver'
+import Leaderboard from '@/views/Leaderboard'
+import { isNil } from 'lodash'
+import store from '@/store'
 
 Vue.use(Router)
 
@@ -23,7 +26,10 @@ const router = new Router({
     {
       path: '/home',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {
+        authNotRequired: true
+      }
     },
     {
       path: '/select',
@@ -41,10 +47,29 @@ const router = new Router({
       component: GameOver
     },
     {
+      path: '/leaderboard',
+      name: 'leaderboard',
+      component: Leaderboard,
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
       path: '*',
       redirect: '/home'
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  if (
+    !(to.meta && to.meta.authNotRequired) &&
+    isNil(store.state.authentication.user)
+  ) {
+    const path = '/home'
+    return next(`${path}?redirectUrl=${to.path}`)
+  }
+  next()
 })
 
 export default router

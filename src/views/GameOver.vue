@@ -9,7 +9,7 @@
           >Level {{ game.level == 99 ? 'Hard' : game.level }}</span
         >
       </div>
-      <div class="highscore-wrapper">
+      <div v-show="isHighScore" class="highscore-wrapper">
         New Highscore
       </div>
       <div class="score-wrapper">
@@ -55,15 +55,17 @@ export default {
           score: this.game.score
         }
       })
+      this.getHighscores()
     }
   },
   methods: {
-    ...mapActions('highscore', ['setHighScore'])
+    ...mapActions('highscore', ['setHighScore', 'getHighscores'])
   }
 }
 </script>
 
 <style lang="sass" scoped>
+@import '@/theme/variables.sass'
 .page-wrapper
   height: calc(100vh - 40px)
   @apply flex flex-col justify-center items-center
@@ -76,7 +78,8 @@ export default {
       @apply m-2
       @apply text-xl font-bold text-center
     .highscore-wrapper
-      @apply p-2 bg-blue font-semibold text-white
+      @apply p-2 font-semibold text-white
+      background: $secondary
     .score-wrapper
       @apply m-6
       @apply text-center

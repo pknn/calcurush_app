@@ -111,12 +111,12 @@ export default {
   .countdown-timer
     @apply absolute pin z-50
   .pause-screen
-    height: 40vh
+    height: 45vh
     width: 80vw
     @apply z-50 absolute pin bg-white m-auto py-4 px-2 text-center rounded-lg
     .content
       @apply h-full w-full relative
-      @apply flex flex-col
+      @apply flex flex-col justify-around
       .heading
         @apply mt-4 mb-6 text-lg font-bold uppercase
   .overlay

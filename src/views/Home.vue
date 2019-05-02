@@ -5,7 +5,7 @@
       <div class="content p-4">
         <font-awesome-icons
           :icon="['fas', 'cog']"
-          size="4x"
+          size="3x"
           spin
         ></font-awesome-icons>
         <span class="m-4 text-xl font-medium">Initializing</span>
@@ -40,7 +40,7 @@
       <router-link class="btn btn-primary" :to="{ name: 'select' }">
         <font-awesome-icons :icon="['fas', 'play']"></font-awesome-icons>
       </router-link>
-      <router-link class="btn btn-secondary" :to="{ name: 'select' }">
+      <router-link class="btn btn-secondary" :to="{ name: 'leaderboard' }">
         <font-awesome-icons :icon="['fas', 'trophy']"></font-awesome-icons>
       </router-link>
       <a class="btn btn-secondary" @click="modal = true">
@@ -145,11 +145,11 @@ export default {
   .overlay
     @apply absolute pin h-full w-full bg-black opacity-75 z-40
   .login-modal
-    height: 20vh
+    height: 30vh
     width: 80vw
     @apply z-50 absolute pin bg-white m-auto py-4 px-2 text-center rounded-lg shadow-lg
     .content
-      @apply flex flex-col justify-center items-center
+      @apply flex flex-col justify-center items-center h-full
   .setting-modal
     height: 20vh
     width: 80vw
@@ -162,7 +162,7 @@ export default {
   .content-wrapper
     @apply flex flex-col justify-center items-center
     .logo
-      @apply mb-8
+      @apply mb-6
     .user-info
-      @apply absolute pin-b mb-4
+      @apply absolute pin-b mb-4 text-xs
 </style>

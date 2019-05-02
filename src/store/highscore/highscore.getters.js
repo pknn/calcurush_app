@@ -1,8 +1,8 @@
 export default {
-  levelHighscore: state => level => state.levels[level],
+  levelHighscore: state => level => state.levels.find(h => h.level == level),
   isNewHighScore: state => game => {
-    const currentHighScore = state.levels[game.level].score
-    console.log(currentHighScore)
-    return state.levels[game.level].score < game.score
+    const level = state.levels.find(h => h.level == game.level)
+    if (!level) return true
+    else return level.score < game.score
   }
 }

@@ -5,13 +5,16 @@
 </template>
 
 <style lang="sass" scoped>
+@import '@/theme/variables.sass'
 .card
-  flex-basis: 45%
-  @apply m-2 shadow-md rounded flex items-center justify-center
+  flex-basis: 40%
+  @apply my-2 shadow-lg rounded-lg flex items-center justify-center
+  background: $grey
   &:active
-    @apply shadow-none bg-grey
+    @apply shadow-md
+    background: darken($grey, 20)
   .level-label
-    @apply text-lg font-semibold px-6 py-8 capitalize
+    @apply text-xl font-semibold px-6 py-8 capitalize
 </style>
 
 <script>
