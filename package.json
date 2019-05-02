@@ -15,6 +15,12 @@
     "bundlesize": "bundlesize"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-brands-svg-icons": "^5.8.1",
+    "@fortawesome/free-regular-svg-icons": "^5.8.1",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/vue-fontawesome": "^0.1.6",
+    "@fullhuman/postcss-purgecss": "^1.2.0",
     "autoprefixer": "^9.5.1",
     "core-js": "^3.0.1",
     "firebase": "^5.9.4",
@@ -22,12 +28,12 @@
     "lodash": "^4.17.11",
     "pwacompat": "^2.0.8",
     "register-service-worker": "^1.6.2",
+    "tailwindcss": "^0.7.4",
     "terser": "3.17",
     "vue": "^2.6.10",
     "vue-head": "^2.1.1",
     "vue-router": "^3.0.6",
-    "vuex": "^3.1.0",
-    "tailwindcss": "^0.7.4"
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.123",
@@ -60,7 +66,8 @@
   "resolutions": {
     "terser": "3.14.1"
   },
-  "bundlesize": [{
+  "bundlesize": [
+    {
       "path": "./dist/chunk-vendors.js",
       "maxSize": "155 kB"
     },

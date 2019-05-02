@@ -1,6 +1,9 @@
 <template>
   <div class="page-wrapper">
     <img alt="logo-bento" class="logo" src="@/assets/logo.png" />
+    <router-link :to="{ name: 'select' }">
+      <font-awesome-icons :icon="['fas', 'play']"></font-awesome-icons>
+    </router-link>
   </div>
 </template>
 
