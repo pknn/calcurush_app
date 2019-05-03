@@ -1,3 +1,4 @@
 export default {
-  user: undefined
+  user: undefined,
+  displayNameToChange: undefined
 }

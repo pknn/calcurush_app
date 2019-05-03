@@ -47,7 +47,7 @@ export default {
     }
   },
   mounted() {
-    if (this.isNewHighScore) {
+    if (this.isHighScore) {
       this.setHighScore({
         level: this.game.level == 99 ? 'hard' : this.game.level,
         info: {

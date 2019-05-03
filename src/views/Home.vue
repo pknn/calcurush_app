@@ -14,25 +14,48 @@
     <div v-show="modal" class="setting-modal">
       <div class="content">
         <span class="heading">Account Settings</span>
-        <button v-show="!networkOnLine" class="btn btn-google" disabled>
-          <font-awesome-icons :icon="['fab', 'google']"></font-awesome-icons>
-          &nbsp;Network Offline
-        </button>
-        <button
-          v-show="networkOnLine && user == undefined"
-          class="btn btn-google"
-          @click="loginWithGoogle"
-        >
-          <font-awesome-icons :icon="['fab', 'google']"></font-awesome-icons>
-          &nbsp;Login with Google
-        </button>
-        <button
-          v-show="networkOnLine && user != undefined"
-          class="btn btn-google-outline"
-          @click="logout"
-        >
-          &nbsp;Logout
-        </button>
+        <div v-if="!networkOnLine" class="offline">
+          <button class="btn btn-google" disabled>
+            <font-awesome-icons :icon="['fas', 'mask']"></font-awesome-icons>
+            &nbsp;Network Offline
+          </button>
+        </div>
+        <div v-else class="online">
+          <div class="displayNameChange">
+            <input
+              v-if="!editing"
+              v-model="displayName"
+              class="input disabled"
+              name="displayName"
+              type="text"
+              placeholder="Display Name"
+              readonly
+              @click="editing = true"
+            />
+            <input
+              v-else
+              :value="displayNameToChange"
+              class="input"
+              name="displayName"
+              type="text"
+              placeholder="Display Name"
+              @input="setDisplayNameToChange($event.target.value)"
+              @blur="set"
+            />
+            <span>Tap to change display name</span>
+          </div>
+          <button
+            v-if="user == undefined"
+            class="btn btn-google"
+            @click="loginAnonymous"
+          >
+            <font-awesome-icons :icon="['fas', 'mask']"></font-awesome-icons>
+            &nbsp;Login Anonymously
+          </button>
+          <button v-else class="btn btn-google-outline" @click="logout">
+            &nbsp;Logout
+          </button>
+        </div>
       </div>
     </div>
     <div class="content-wrapper">
@@ -74,17 +97,14 @@ export default {
   data: () => ({
     loginError: null,
     modal: false,
-    init: false
+    init: false,
+    editing: false
   }),
   computed: {
-    ...mapState('authentication', ['user']),
+    ...mapState('authentication', ['user', 'displayNameToChange']),
     ...mapState('app', ['networkOnLine']),
     displayName() {
-      return this.user
-        ? this.user.displayName
-          ? this.user.displayName.split(' ')[0]
-          : this.user.id
-        : ''
+      return this.user ? this.user.displayName : ''
     }
   },
   watch: {
@@ -104,20 +124,9 @@ export default {
     } else this.init = false
   },
   methods: {
-    ...mapMutations('authentication', ['setUser']),
+    ...mapMutations('authentication', ['setUser', 'setDisplayNameToChange']),
     ...mapActions('highscore', ['getHighscores']),
-    async loginWithGoogle() {
-      this.loginError = null
-      const provider = new firebase.auth.GoogleAuthProvider()
-      this.setUser(undefined)
-
-      try {
-        await firebase.auth().signInWithRedirect(provider)
-      } catch (err) {
-        this.loginError = err
-        this.setUser(null)
-      }
-    },
+    ...mapActions('authentication', ['setDisplayName']),
     async loginAnonymous() {
       this.loginError = null
       this.setUser(undefined)
@@ -131,6 +140,10 @@ export default {
     },
     async logout() {
       await firebase.auth().signOut()
+    },
+    set() {
+      this.editing = false
+      this.setDisplayName()
     }
   }
 }
@@ -149,7 +162,7 @@ export default {
     .content
       @apply flex flex-col justify-center items-center h-full
   .setting-modal
-    height: 20vh
+    height: 25vh
     width: 80vw
     @apply z-50 absolute pin bg-white m-auto py-4 px-2 text-center rounded-lg shadow-lg
     .content
@@ -157,6 +170,16 @@ export default {
       @apply flex flex-col
       .heading
         @apply mt-4 mb-6 text-lg font-bold uppercase
+      .online
+        .displayNameChange
+          @apply flex flex-col justify-center items-center
+          .input
+            @apply p-2 bg-grey-lightest shadow-inner
+            &.disabled
+              @apply bg-grey-lighter
+          span
+            @apply text-xs
+
   .content-wrapper
     @apply flex flex-col justify-center items-center
     .logo

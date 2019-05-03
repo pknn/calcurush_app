@@ -27,5 +27,14 @@ export default {
     if (!(currentRouter.meta && currentRouter.meta.authNotRequired)) {
       router.push('/login')
     }
+  },
+
+  setDisplayName: async ({ state, commit }) => {
+    const userDB = new UsersDB()
+    if (state.displayNameToChange == '') return
+    commit('setDisplayName', state.displayNameToChange)
+    const user = state.user
+    await userDB.update(user)
+    commit('setDisplayNameToChange', '')
   }
 }

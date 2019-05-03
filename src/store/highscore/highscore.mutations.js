@@ -1,7 +1,7 @@
 export default {
   setLevelHighScore: (state, payload) => {
     const { level, info } = payload
-    const highscore = state.levels.find(h => h.level === level)
+    const highscore = state.levels.find(h => h.level == level)
     if (!highscore)
       state.levels.push({
         level,
