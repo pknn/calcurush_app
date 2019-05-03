@@ -49,14 +49,14 @@ export default {
 .page-wrapper
   @apply flex flex-col justify-center items-center
   .head-content
-    @apply fixed pin-t m-auto py-3 h-8 w-full
+    @apply fixed pin-t m-auto py-3 h-6 w-full
     background: $white
     .back-button
       @apply absolute pin-l ml-3
     .header
     @apply text-lg font-bold text-center uppercase
   .body
-    @apply my-6
+    @apply mb-6 mt-8
     .level-cards
       @apply flex flex-wrap justify-around
 </style>
