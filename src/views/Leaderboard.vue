@@ -60,5 +60,9 @@ export default {
     .header
       @apply absolute pin m-auto text-lg font-bold uppercase text-center mt-6
   .body
-    @apply mt-10
+    @apply mt-10 w-full
+    .leaderboard-cards
+      @apply flex flex-col relative
+      .card
+        flex-basis: 100%
 </style>

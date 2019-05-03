@@ -51,9 +51,9 @@ export default {
 
 <style lang="sass" scoped>
 .card
-  @apply w-full
+  flex-basis: 100%
   @apply flex items-center justify-center
-  @apply p-5 my-6
+  @apply p-5 my-3
   @apply shadow-md rounded-lg
   .level
     @apply text-center
