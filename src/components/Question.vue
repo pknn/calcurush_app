@@ -95,7 +95,7 @@ export default {
         })
       }
 
-      const correctIndex = random(0, 3)
+      const correctIndex = random(0, 4)
       this.answers[correctIndex] = {
         number: answer,
         isCorrect: true
