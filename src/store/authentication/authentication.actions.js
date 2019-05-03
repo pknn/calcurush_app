@@ -31,7 +31,9 @@ export default {
 
   setDisplayName: async ({ state, commit }) => {
     const userDB = new UsersDB()
-    if (state.displayNameToChange == '') return
+    console.log(state.displayNameToChange)
+    if (!state.displayNameToChange || state.displayNameToChange.trim() == '')
+      return
     commit('setDisplayName', state.displayNameToChange)
     const user = state.user
     await userDB.update(user)

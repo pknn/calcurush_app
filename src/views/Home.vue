@@ -23,22 +23,13 @@
         <div v-else class="online">
           <div class="displayNameChange">
             <input
-              v-if="!editing"
-              v-model="displayName"
-              class="input disabled"
-              name="displayName"
-              type="text"
-              placeholder="Display Name"
-              readonly
-              @click="editing = true"
-            />
-            <input
-              v-else
-              :value="displayNameToChange"
+              ref="displayName"
+              :value="editing ? displayNameToChange : displayName"
               class="input"
               name="displayName"
               type="text"
               placeholder="Display Name"
+              @click="editing = true"
               @input="setDisplayNameToChange($event.target.value)"
               @blur="set"
             />
@@ -112,6 +103,7 @@ export default {
       handler(user) {
         if (user) {
           this.getHighscores()
+          this.init = false
         }
       },
       immediate: true
@@ -132,7 +124,6 @@ export default {
       this.setUser(undefined)
       try {
         await firebase.auth().signInAnonymously()
-        this.init = false
       } catch (err) {
         this.loginError = err
         this.setUser(null)
@@ -142,6 +133,7 @@ export default {
       await firebase.auth().signOut()
     },
     set() {
+      this.$refs.displayName.values = this.displayName
       this.editing = false
       this.setDisplayName()
     }
