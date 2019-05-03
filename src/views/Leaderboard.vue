@@ -54,7 +54,7 @@ export default {
 .page-wrapper
   @apply flex flex-col justify-center items-center
   .head-content
-    @apply fixed pin-t w-full bg-white h-16
+    @apply fixed pin-t w-full bg-white h-16 z-40
     .back-button
       @apply absolute pin-l ml-3 mt-6 z-50
     .header
